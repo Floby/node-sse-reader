@@ -1,0 +1,36 @@
+{
+  "name": "sse-reader",
+  "version": "1.0.0",
+  "description": "Reads a text/event-stream stream as specified by the WD-eventsource W3C recommendation",
+  "main": "index.js",
+  "scripts": {
+    "test": "istanbul cover --print detail _mocha -- test -R spec",
+    "coveralls": "cat coverage/lcov.info | coveralls"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Floby/node-sse-reader.git"
+  },
+  "keywords": [
+    "sse",
+    "server-sent-events",
+    "event-source",
+    "event",
+    "source",
+    "server",
+    "sent",
+    "events"
+  ],
+  "author": "Florent Jaby <florent.jaby@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Floby/node-sse-reader/issues"
+  },
+  "homepage": "https://github.com/Floby/node-sse-reader",
+  "devDependencies": {
+    "chai": "^3.2.0",
+    "coveralls": "^2.11.4",
+    "istanbul": "^0.3.19",
+    "mocha": "^2.3.0"
+  }
+}
