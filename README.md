@@ -16,6 +16,7 @@ Usage
 ```javascript
 var Reader = require('sse-reader');
 var reader = Reader();
+source.pipe(reader);
 ```
 
 The following stream
