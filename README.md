@@ -14,8 +14,8 @@ Usage
 -----
 
 ```javascript
-var SSE = require('sse-reader');
-var sse = SSE();
+var Reader = require('sse-reader');
+var reader = Reader();
 ```
 
 The following stream
@@ -32,6 +32,24 @@ event: remove
 data: Floby
 
 ```
+
+results in the following events being triggered
+
+```javascript
+'event' -> ('Hello')
+'data'  -> ({data: 'Hello'})
+'event' -> ('Floby', 'add')
+'data'  -> ({name: 'add', data: 'Floby'})
+'add'   -> ('Floby')
+'event' -> ('Floby', 'remove', '8000')
+'data'  -> ({id: '8000', name: 'remove', data: 'Floby'})
+'remove'-> ('Floby')
+'id'    -> ('8000')
+'end'   -> ()
+```
+
+The `data` event of course come from the basic readable stream interface
+which means you can also call `.read()` and `pipe()`.
 
 Test
 ----
