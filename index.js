@@ -9,8 +9,15 @@ function Reader () {
   stream.Transform.call(this);
   this._readableState.objectMode = true;
   var self = this;
-
+  var lastEventId = null;
   var currentEvent = new Event();
+
+  this.on('id', function(id) {
+    lastEventId = id;
+  });
+  this.lastEventId = function () {
+    return lastEventId;
+  }
 
   this._transform = function (chunk, encoding, callback) {
     chunk = chunk.toString();
@@ -48,8 +55,20 @@ function Reader () {
 
   function eventComplete () {
     if (currentEvent.isEmpty()) return;
-    self.push(currentEvent.toJSON());
+    var json = currentEvent.toJSON();
+    triggerEvents(json);
+    self.push(json);
     currentEvent = new Event();
+  }
+
+  function triggerEvents (json) {
+    self.emit('event', json.data, json.name, json.id);
+    if (json.name) {
+      self.emit('event:' + json.name, json.data);
+    }
+    if (json.id) {
+      self.emit('id', json.id);
+    }
   }
 }
 

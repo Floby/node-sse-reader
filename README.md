@@ -40,12 +40,12 @@ results in the following events being triggered
 'event' -> ('Hello')
 'data'  -> ({data: 'Hello'})
 'event' -> ('Floby', 'add')
+'event:add'   -> ('Floby')
 'data'  -> ({name: 'add', data: 'Floby'})
-'add'   -> ('Floby')
 'event' -> ('Floby', 'remove', '8000')
-'data'  -> ({id: '8000', name: 'remove', data: 'Floby'})
-'remove'-> ('Floby')
+'event:remove'-> ('Floby')
 'id'    -> ('8000')
+'data'  -> ({id: '8000', name: 'remove', data: 'Floby'})
 'end'   -> ()
 ```
 
