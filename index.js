@@ -1,7 +1,6 @@
 var util = require('util');
 var stream = require('stream');
 
-
 module.exports = Reader;
 util.inherits(Reader, stream.Transform);
 function Reader () {
