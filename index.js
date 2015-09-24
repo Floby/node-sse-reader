@@ -10,6 +10,7 @@ function Reader () {
   var self = this;
   var lastEventId = null;
   var currentEvent = new Event();
+  var lastLine = '';
 
   this.on('id', function(id) {
     lastEventId = id;
@@ -20,13 +21,20 @@ function Reader () {
 
   this._transform = function (chunk, encoding, callback) {
     chunk = chunk.toString();
+    chunk = lastLine + chunk;
     var lines = chunk.toString().split('\r\n');
+    lastLine = lines.pop() || '';
     try {
       processLines(lines);
       callback();
     } catch(e) {
       callback(e);
     }
+  }
+
+  this._flush = function (callback) {
+    processLines([lastLine]);
+    callback();
   }
 
   function processLines (lines) {
