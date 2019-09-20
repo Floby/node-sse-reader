@@ -1,2 +1,5 @@
 node_modules
 coverage
+.*.un~
+.*.sw[a-z]
+.nyc_output
